@@ -1,24 +1,17 @@
-# Base stage for both service and tests
-FROM python:3.8-slim as base
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
 
-# Copy the entire project
-COPY . /usr/src/app
-
-# Install dependencies
-WORKDIR /usr/src/app/broadcast-service
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Set the working directory back to the project root
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Service stage
-FROM base as service
+# Copy the service files and tests
+COPY . .
 
-WORKDIR /usr/src/app/broadcast-service
-CMD ["python", "broadcast_service.py"]
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Test stage
-FROM base as test
+# Use an environment variable to determine whether to run tests
+ENV RUN_TESTS=false
 
-WORKDIR /usr/src/app/tests/broadcast
-CMD ["python", "-m", "unittest", "discover"]
+# Run the tests if the environment variable is true, otherwise run the service
+CMD if [ "$RUN_TESTS" = "true" ]; then python -m unittest discover -s tests; else python broadcast_service.py; fi

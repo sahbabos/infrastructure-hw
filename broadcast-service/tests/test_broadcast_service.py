@@ -4,7 +4,7 @@ import sys
 import time
 import threading
 import requests
-sys.path.append('../broadcast-service')
+sys.path.append('../')
 import broadcast_service
 
 class TestBroadcastService(unittest.TestCase):
