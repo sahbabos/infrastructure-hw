@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontend Service</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        socket.on('new_message', function(data) {
+            console.log('Received message:', data);  // Log received data
+            var messageList = document.getElementById('messages');
+            var newMessage = document.createElement('li');
+            newMessage.textContent = data.message;
+            messageList.appendChild(newMessage);
+        });
+    </script>
+</head>
+<body>
+    <h1>Send a Message</h1>
+    <form method="post" action="/send">
+        <input type="text" name="message" placeholder="Enter your message">
+        <button type="submit">Send</button>
+    </form>
+
+    <h2>Received Messages</h2>
+    <ul id="messages"></ul>
+</body>
+</html>
