@@ -1,29 +1,20 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask import Flask, request, jsonify
+import logging
+from datetime import datetime
 
 app = Flask(__name__)
-socketio = SocketIO(app)
 
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-def log_message(data):
-    print(f"Received broadcast message: {data['message']}")
-
-
-def emit_message(data):
-    socketio.emit('new_message', {'message': data['message']})
-
-
-@socketio.on('broadcast_message')
-def handle_broadcast_message(data):
-    log_message(data)
-    emit_message(data)
-
+@app.route('/receive', methods=['POST'])
+def receive_message():
+    data = request.json
+    message = data.get('message', None)
+    if message is None:
+        logging.error("Invalid message format")
+        return jsonify({'status': 'error', 'message': 'Invalid message format'}), 400
+    else:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        logging.info(f"Received message: {message} at {timestamp}")
+        return jsonify({'status': 'success', 'message': 'Message received', 'received_message': message, 'timestamp': timestamp}), 200
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5002,
-                 debug=True, allow_unsafe_werkzeug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
