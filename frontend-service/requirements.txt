@@ -1,4 +1,0 @@
-flask-socketio
-flask-testing
-pytest
-requests
