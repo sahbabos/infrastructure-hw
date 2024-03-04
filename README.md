@@ -110,15 +110,15 @@ cd receiver-service
 python receiver-service.py
    ```
 * You can see url in the response as mentioned below. you can use this url to access the landing page after running the broadcast_service:
-```
+```bash
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5002
  * Running on http://192.168.1.173:5002
 ```
 
-2. Navigate to broadcast-service and build the image:
+2. Navigate to broadcast-service and run the program:
 ```bash
 cd ../broadcast-service
 python broadcast-service.py
 ```
-3. Open a web browser and  enter your url:
+3. Open a web browser and  enter your url
