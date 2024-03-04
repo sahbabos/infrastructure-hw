@@ -22,30 +22,54 @@ The messages are send  in real-time from the broadcast service to the receiver s
 
 ## Prerequisites
 
-NOTE: Please make sure you have these Prerequisites before running the project
-- Docker
-- Minikube
-- kubectl
-- Make
+Before running the project, please ensure that you have the following installed:
 
+- **Docker:** [Download Docker](https://www.docker.com/get-started)
+- **Minikube:** [Download Minikube](https://minikube.sigs.k8s.io/docs/start/)
+- **kubectl:** [Download kubectl](https://kubernetes.io/docs/tasks/tools/)
+- **Make:**
+  - For Windows: [Download Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
+  - For macOS: Make is usually pre-installed, but if not, you can install it using [Homebrew](https://brew.sh/): `brew install make`
+  - For Linux: Use your package manager to install make, e.g., for Ubuntu/Debian: `sudo apt-get install make`
+- **Python 3 (3.9):** [Download Python 3.9](https://www.python.org/downloads/release/python-390/)
+- **pip (Python package installer):** pip is usually installed with Python 3.9. If not, you can [download pip](https://pip.pypa.io/en/stable/installation/) or install it using:
+  - For Windows/macOS/Linux: `python -m ensurepip --upgrade`
+
+## Installing Python Dependencies - (for Method-3)
+
+Before running the (Method-3), you need to install the required Python packages for both the broadcast and receiver services. Navigate to each service directory and install the dependencies using pip:
+
+```bash
+cd broadcast-service
+pip install -r requirements.txt
+
+cd ../receiver-service
+pip install -r requirements.txt
+```
 # Running the Project
 
 ## Method 1 - With Makefile
+
+Navigate to the directory where you cloned the repository and ensure that the Docker daemon is running.
 
 **Start Minikube and Build Docker Images:**
    ```bash
    make setup
    ```
-  This will start Minikube, build Docker images, deploy the services, and open the Receiver Service in your default web browser.
-  If you have trouble opening a browser, then copy the URL from response in the terminal. You can use the URL in your browser to view the webpage.
+  This command will start Minikube, build Docker images, deploy the services, and open the Receiver Service in your default web browser.
+  
+(Note): If you encounter any issues opening the browser, copy the URL from the terminal response and paste it into your web browser to view the webpage..
 
  **Clean Up:**
    ```bash
    make cleanup
    ```
-This will delete the Minikube cluster.
+In the end if you want to cleanup you can run the above command. This will delete the Minikube cluster and remove all associated resources.
 
 ## Method 2 - Manual Setup without Makefile
+
+In a case that you are bored and want to have some fun you can take the long route and do all the steps manually.
+
 **Step 1 - Start Minikube:**
 ```bash
 minikube start
@@ -109,8 +133,10 @@ you can also run this code without using the minikube or docker. You will be nee
 cd receiver-service
 python receiver-service.py
    ```
-* You can see url in the response as mentioned below. you can use this url to access the landing page after running the broadcast_service:
-```bash
+   
+* After running the receiver service, you will see a URL in the terminal output. Make sure to save this URL. You can use it to access the landing page after running the broadcast service:
+
+```
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5002
  * Running on http://192.168.1.173:5002
@@ -121,4 +147,5 @@ python receiver-service.py
 cd ../broadcast-service
 python broadcast-service.py
 ```
+
 3. Open a web browser and  enter your url
