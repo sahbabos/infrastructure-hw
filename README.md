@@ -22,13 +22,18 @@ The messages are send  in real-time from the broadcast service to the receiver s
 
 ## Prerequisites
 
-NOTE: Please make sure you have these Prerequisites before running the project
-- Docker
-- Minikube
-- kubectl
-- Make
-- Python 3 (3.9)
-- pip (Python package installer)
+Before running the project, please ensure that you have the following installed:
+
+- **Docker:** [Download Docker](https://www.docker.com/get-started)
+- **Minikube:** [Download Minikube](https://minikube.sigs.k8s.io/docs/start/)
+- **kubectl:** [Download kubectl](https://kubernetes.io/docs/tasks/tools/)
+- **Make:**
+  - For Windows: [Download Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
+  - For macOS: Make is usually pre-installed, but if not, you can install it using [Homebrew](https://brew.sh/): `brew install make`
+  - For Linux: Use your package manager to install make, e.g., for Ubuntu/Debian: `sudo apt-get install make`
+- **Python 3 (3.9):** [Download Python 3.9](https://www.python.org/downloads/release/python-390/)
+- **pip (Python package installer):** pip is usually installed with Python 3.9. If not, you can [download pip](https://pip.pypa.io/en/stable/installation/) or install it using:
+  - For Windows/macOS/Linux: `python -m ensurepip --upgrade`
 
 ## Installing Python Dependencies
 
