@@ -27,7 +27,20 @@ NOTE: Please make sure you have these Prerequisites before running the project
 - Minikube
 - kubectl
 - Make
+- Python 3 (3.9)
+- pip (Python package installer)
 
+## Installing Python Dependencies
+
+Before running the project, you need to install the required Python packages for both the broadcast and receiver services. Navigate to each service directory and install the dependencies using pip:
+
+```bash
+cd broadcast-service
+pip install -r requirements.txt
+
+cd ../receiver-service
+pip install -r requirements.txt
+```
 # Running the Project
 
 ## Method 1 - With Makefile
@@ -116,9 +129,9 @@ python receiver-service.py
  * Running on http://192.168.1.173:5002
 ```
 
-2. Navigate to broadcast-service and build the image:
+2. Navigate to broadcast-service and run the program:
 ```bash
 cd ../broadcast-service
 python broadcast-service.py
 ```
-3. Open a web browser and  enter your url:
+3. Open a web browser and  enter your url
