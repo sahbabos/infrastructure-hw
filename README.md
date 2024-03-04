@@ -133,6 +133,7 @@ you can also run this code without using the minikube or docker. You will be nee
 cd receiver-service
 python receiver-service.py
    ```
+   
 * After running the receiver service, you will see a URL in the terminal output. Make sure to save this URL. You can use it to access the landing page after running the broadcast service:
 
 ```
@@ -146,4 +147,5 @@ python receiver-service.py
 cd ../broadcast-service
 python broadcast-service.py
 ```
+
 3. Open a web browser and  enter your url
